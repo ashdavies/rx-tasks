@@ -25,7 +25,8 @@ before_script:
     - chmod +x gradlew
 
 script:
-    - ./gradlew clean test build --stacktrace
+    - ./gradlew clean test build
+    - ./gradlew library:bintrayUpload -PbintrayUser=$BINTRAY_USER -PbintrayKey=$BINTRAY_KEY -PdryRun=false
 
 after_success:
     - ./gradlew jacocoTestReport
