@@ -16,7 +16,7 @@ build.log
 build-log.xml
 
 # Local configuration files (android, sdk path, etc)
-*.properties
+local.properties
 
 .project
 .classpath
