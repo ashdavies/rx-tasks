@@ -27,8 +27,8 @@ public class SingleEmitterSuccessListenerTest {
   }
 
   @Test
-  public void shouldCallOnComplete() throws Exception {
-    listener.onSuccess(null);
+  public void shouldCallOnSuccess() throws Exception {
+    listener.onSuccess(RESULT);
 
     verify(emitter, times(1)).onSuccess(RESULT);
     verify(emitter, never()).onError(any(Throwable.class));

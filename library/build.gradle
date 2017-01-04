@@ -20,6 +20,12 @@ android {
   compileSdkVersion 25
   buildToolsVersion '25.0.1'
 
+  buildTypes {
+    debug {
+      testCoverageEnabled true
+    }
+  }
+
   defaultConfig {
     minSdkVersion 19
     targetSdkVersion 25
@@ -49,9 +55,9 @@ dependencies {
 publish {
   userOrg = 'ashdavies'
   groupId = 'io.ashdavies'
-  artifactId = 'rxtasks'
+  artifactId = 'RxTasks'
 
   version = project.version
   description = 'RxTasks'
-  website = 'https://github.com/ashdavies/rxtasks'
+  website = 'https://github.com/ashdavies/RxTasks'
 }
