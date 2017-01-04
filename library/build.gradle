@@ -54,10 +54,10 @@ dependencies {
 
 publish {
   userOrg = 'ashdavies'
-  groupId = 'io.ashdavies'
-  artifactId = 'Tasks'
+  groupId = 'io.ashdavies.rx'
+  artifactId = 'tasks'
 
   version = project.version
-  description = 'Tasks'
-  website = 'https://github.com/ashdavies/Tasks'
+  description = 'RxTasks'
+  website = 'https://github.com/ashdavies/RxTasks'
 }
