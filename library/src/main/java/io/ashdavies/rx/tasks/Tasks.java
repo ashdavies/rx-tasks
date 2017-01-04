@@ -1,12 +1,12 @@
-package io.ashdavies.rxtasks;
+package io.ashdavies.rx.tasks;
 
 import com.google.android.gms.tasks.Task;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 
-public class RxTasks {
+public class Tasks {
 
-  private RxTasks() {
+  private Tasks() {
     throw new IllegalStateException("No instances");
   }
 

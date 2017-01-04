@@ -19,11 +19,11 @@ Please note that this library uses RxJava2 so calls must respect Completable and
 #### Usage
 Import to your project with the following statement
 ```android
-    compile "io.ashdavies.rxtasks:1.0.0"
+    compile "io.ashdavies.rx.tasks:1.0.0"
 ```
 Any `Task` returned from the Google Mobile Services API can simply be wrapped in the appropriate call.
 ```android
-    Single<AuthResult> result = RxTasks.single(FirebaseAuth.getInstance().signInAnonymously());
+    Single<AuthResult> result = Tasks.single(FirebaseAuth.getInstance().signInAnonymously());
 ```
 
 #### License

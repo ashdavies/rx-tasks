@@ -1,35 +1,34 @@
-package io.ashdavies.rxtasks;
+package io.ashdavies.rx.tasks;
 
-import io.reactivex.SingleEmitter;
+import io.reactivex.CompletableEmitter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SingleEmitterFailureListenerTest {
+public class CompletableEmitterFailureListenerTest {
 
-  private SingleEmitterFailureListener<String> listener;
+  private CompletableEmitterFailureListener listener;
 
-  @Mock SingleEmitter<String> emitter;
+  @Mock CompletableEmitter emitter;
   @Mock Exception exception;
 
   @Before
   public void setUp() throws Exception {
-    listener = new SingleEmitterFailureListener<>(emitter);
+    listener = new CompletableEmitterFailureListener(emitter);
   }
 
   @Test
   public void shouldCallOnErrorWithException() throws Exception {
     listener.onFailure(exception);
 
-    verify(emitter, never()).onSuccess(anyString());
+    verify(emitter, never()).onComplete();
     verify(emitter, times(1)).onError(exception);
   }
 }

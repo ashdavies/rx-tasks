@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
-import io.ashdavies.rxtasks.RxTasks;
+import io.ashdavies.rx.tasks.Tasks;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void signInAnonymously() {
-    Disposable disposable = RxTasks.single(FirebaseAuth.getInstance().signInAnonymously())
+    Disposable disposable = Tasks.single(FirebaseAuth.getInstance().signInAnonymously())
         .subscribe(result -> greetAnonymousUser(result.getUser().getUid()));
 
     disposables.add(disposable);

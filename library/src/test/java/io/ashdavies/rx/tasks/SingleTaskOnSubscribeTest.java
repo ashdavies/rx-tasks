@@ -1,10 +1,10 @@
-package io.ashdavies.rxtasks;
+package io.ashdavies.rx.tasks;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import io.reactivex.CompletableEmitter;
-import io.reactivex.CompletableOnSubscribe;
+import io.reactivex.SingleEmitter;
+import io.reactivex.SingleOnSubscribe;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,20 +16,20 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CompletableTaskOnSubscribeTest {
+public class SingleTaskOnSubscribeTest {
 
-  private CompletableOnSubscribe onSubscribe;
+  private SingleOnSubscribe<String> onSubscribe;
 
-  @Mock Task<Void> task;
-  @Mock CompletableEmitter emitter;
+  @Mock Task<String> task;
+  @Mock SingleEmitter<String> emitter;
 
-  @Mock TaskListenerFactory<Void, CompletableEmitter> factory;
-  @Mock OnSuccessListener<Void> onSuccessListener;
+  @Mock TaskListenerFactory<String, SingleEmitter<String>> factory;
+  @Mock OnSuccessListener<String> onSuccessListener;
   @Mock OnFailureListener onFailureListener;
 
   @Before
   public void setUp() throws Exception {
-    onSubscribe = new CompletableTaskOnSubscribe(task, factory);
+    onSubscribe = new SingleTaskOnSubscribe<>(task, factory);
   }
 
   @Test

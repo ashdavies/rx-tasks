@@ -1,4 +1,4 @@
-package io.ashdavies.rxtasks;
+package io.ashdavies.rx.tasks;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

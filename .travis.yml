@@ -1,4 +1,5 @@
 language: android
+sudo: false
 
 jdk:
     - oraclejdk8
@@ -16,11 +17,16 @@ android:
     licenses:
         - 'android-sdk-license-.+'
 
+cache:
+  directories:
+    - $HOME/.gradle
+
 before_script:
     - chmod +x gradlew
 
 script:
-    - ./gradlew clean test jacocoTestReport build bintrayUpload -PbintrayUser=$BINTRAY_USER -PbintrayKey=$BINTRAY_KEY -PdryRun=false
+    - ./gradlew clean test build --stacktrace
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+    - ./gradlew jacocoTestReport
+    - bash <(curl -s https://codecov.io/bash)

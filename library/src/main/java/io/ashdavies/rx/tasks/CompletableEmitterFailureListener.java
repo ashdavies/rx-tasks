@@ -1,4 +1,4 @@
-package io.ashdavies.rxtasks;
+package io.ashdavies.rx.tasks;
 
 import android.support.annotation.NonNull;
 import com.google.android.gms.tasks.OnFailureListener;

@@ -1,6 +1,6 @@
-package io.ashdavies.rxtasks;
+package io.ashdavies.rx.tasks;
 
-import io.reactivex.SingleEmitter;
+import io.reactivex.CompletableEmitter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,24 +13,22 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SingleEmitterSuccessListenerTest {
+public class CompletableEmitterSuccessListenerTest {
 
-  private static final String RESULT = "SUCCESS";
+  private CompletableEmitterSuccessListener listener;
 
-  private SingleEmitterSuccessListener<String> listener;
-
-  @Mock SingleEmitter<String> emitter;
+  @Mock CompletableEmitter emitter;
 
   @Before
   public void setUp() throws Exception {
-    listener = new SingleEmitterSuccessListener<>(emitter);
+    listener = new CompletableEmitterSuccessListener(emitter);
   }
 
   @Test
-  public void shouldCallOnSuccess() throws Exception {
-    listener.onSuccess(RESULT);
+  public void shouldCallOnComplete() throws Exception {
+    listener.onSuccess(null);
 
-    verify(emitter, times(1)).onSuccess(RESULT);
+    verify(emitter, times(1)).onComplete();
     verify(emitter, never()).onError(any(Throwable.class));
   }
 }
