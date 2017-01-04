@@ -1,0 +1,59 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:2.3.0-beta1'
+    classpath 'com.google.gms:google-services:3.0.0'
+    classpath 'com.google.guava:guava:20.0'
+  }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 25
+  buildToolsVersion '25.0.1'
+
+  defaultConfig {
+    applicationId 'io.ashdavies.sample'
+
+    jackOptions {
+      enabled true
+    }
+
+    minSdkVersion 21
+    targetSdkVersion 25
+
+    versionCode 1
+    versionName '1.0'
+  }
+
+  dexOptions {
+    javaMaxHeapSize '4g'
+  }
+
+  lintOptions {
+    abortOnError false
+    checkReleaseBuilds false
+    disable 'InvalidPackage'
+  }
+}
+
+dependencies {
+  compile project(':library')
+
+  // Android
+  compile 'com.android.support:appcompat-v7:25.0.1'
+
+  // Firebase
+  compile 'com.google.firebase:firebase-core:9.8.0'
+  compile 'com.google.firebase:firebase-auth:9.8.0'
+
+  // RxJava
+  compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC2'
+  compile 'io.reactivex.rxjava2:rxandroid:2.0.0-RC1'
+}
+
+apply plugin: 'com.google.gms.google-services'

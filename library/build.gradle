@@ -1,0 +1,57 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:2.3.0-beta1'
+    classpath 'com.google.gms:google-services:3.0.0'
+
+    classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+    classpath 'com.novoda:bintray-release:0.3.4'
+  }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
+apply plugin: 'jacoco-android'
+
+android {
+  compileSdkVersion 25
+  buildToolsVersion '25.0.1'
+
+  defaultConfig {
+    minSdkVersion 19
+    targetSdkVersion 25
+
+    versionCode 1
+    versionName project.version
+  }
+
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
+}
+
+dependencies {
+
+  // Firebase
+  compile 'com.google.firebase:firebase-core:9.8.0'
+
+  // RxJava
+  compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC2'
+
+  // Testing
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.mockito:mockito-core:1.10.19'
+}
+
+publish {
+  userOrg = 'ashdavies'
+  groupId = 'io.ashdavies'
+  artifactId = 'rxtasks'
+
+  version = project.version
+  description = 'RxTasks'
+  website = 'https://github.com/ashdavies/rxtasks'
+}
