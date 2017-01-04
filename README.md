@@ -7,12 +7,6 @@
 **Simple and lightweight RxJava2 wrapper for the GMS Tasks API**
 **https://developers.google.com/android/reference/com/google/android/gms/tasks/package-summary**
 
-#### Usage
-```android
-    compile "io.reactivex.rxjava2:rxjava:+"
-    compile "io.ashdavies.rxtasks:+"
-```
-
 #### Description
 `RxTasks` is a lightweight wrapper for the GMS Tasks API,
 more commonly recognised when using asynchronous results from Firebase requests.
@@ -23,6 +17,10 @@ however this is not needed since scheduling and `Disposable`'s are handled by th
 Please note that this library uses RxJava2 so calls must respect Completable and Single chains.
 
 #### Usage
+Import to your project with the following statement
+```android
+    compile "io.ashdavies.rxtasks:1.0.0"
+```
 Any `Task` returned from the Google Mobile Services API can simply be wrapped in the appropriate call.
 ```android
     Single<AuthResult> result = RxTasks.single(FirebaseAuth.getInstance().signInAnonymously());

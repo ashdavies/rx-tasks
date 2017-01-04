@@ -26,9 +26,6 @@ build/
 classes/
 tmp/
 
-# Google Services
-google-services.json
-
 # IDEA Ignores
 *.iml
 *.ipr
