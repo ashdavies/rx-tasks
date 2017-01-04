@@ -1,6 +1,6 @@
 ### Android RxTasks
-![Build Status](https://img.shields.io/travis/ashdavies/android-rxtasks.svg)
-![Coverage](https://img.shields.io/codecov/c/github/ashdavies/android-rxtasks.svg)
+![Build Status](https://img.shields.io/travis/ashdavies/RxTasks.svg)
+![Coverage](https://img.shields.io/codecov/c/github/ashdavies/RxTasks.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-yellowgreen.svg)
 ![License](https://img.shields.io/badge/license-apache%202.0-blue.svg)
 
