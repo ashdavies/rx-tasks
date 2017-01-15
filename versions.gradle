@@ -1,9 +1,13 @@
 ext.versions = [
 
-    'playServices'  : '10.0.1',
-    'rxJava'        : '2.0.0-RC2',
+    'appCompatV7' : '25.1.0',
+    'firebase'    : '9.8.0',
 
-    'truth'         : '0.30',
-    'mockito'       : '1.10.19'
+    'playServices': '10.0.1',
+    'rxJava'      : '2.0.0-RC2',
+    'rxAndroid'   : '2.0.0-RC1',
+
+    'truth'       : '0.30',
+    'mockito'     : '1.10.19'
 
 ]
