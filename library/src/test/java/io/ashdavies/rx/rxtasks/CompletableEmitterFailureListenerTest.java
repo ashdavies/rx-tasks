@@ -1,4 +1,4 @@
-package io.ashdavies.rx.tasks;
+package io.ashdavies.rx.rxtasks;
 
 import io.reactivex.CompletableEmitter;
 import org.junit.Before;
@@ -7,28 +7,28 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CompletableEmitterSuccessListenerTest {
+public class CompletableEmitterFailureListenerTest {
 
-  private CompletableEmitterSuccessListener listener;
+  private CompletableEmitterFailureListener listener;
 
   @Mock CompletableEmitter emitter;
+  @Mock Exception exception;
 
   @Before
   public void setUp() throws Exception {
-    listener = new CompletableEmitterSuccessListener(emitter);
+    listener = new CompletableEmitterFailureListener(emitter);
   }
 
   @Test
-  public void shouldCallOnComplete() throws Exception {
-    listener.onSuccess(null);
+  public void shouldCallOnErrorWithException() throws Exception {
+    listener.onFailure(exception);
 
-    verify(emitter, times(1)).onComplete();
-    verify(emitter, never()).onError(any(Throwable.class));
+    verify(emitter, never()).onComplete();
+    verify(emitter, times(1)).onError(exception);
   }
 }

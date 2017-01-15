@@ -16,9 +16,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
 apply plugin: 'jacoco-android'
 
+apply from: '../versions.gradle'
+
 android {
   compileSdkVersion 25
-  buildToolsVersion '25.0.1'
+  buildToolsVersion '25.0.2'
 
   buildTypes {
     debug {
@@ -40,22 +42,17 @@ android {
 }
 
 dependencies {
+  compile "com.google.android.gms:play-services-tasks:$versions.playServices"
+  compile "io.reactivex.rxjava2:rxjava:$versions.rxJava"
 
-  // Tasks
-  compile 'com.google.android.gms:play-services-tasks:10.0.1'
-
-  // RxJava
-  compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC2'
-
-  // Testing
-  testCompile 'junit:junit:4.12'
-  testCompile 'org.mockito:mockito-core:1.10.19'
+  testCompile "com.google.truth:truth:$versions.truth"
+  testCompile "org.mockito:mockito-core:$versions.mockito"
 }
 
 publish {
   userOrg = 'ashdavies'
   groupId = 'io.ashdavies.rx'
-  artifactId = 'tasks'
+  artifactId = 'rxtasks'
 
   version = project.version
   description = 'RxTasks'

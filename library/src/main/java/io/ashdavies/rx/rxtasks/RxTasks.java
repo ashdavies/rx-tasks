@@ -1,12 +1,12 @@
-package io.ashdavies.rx.tasks;
+package io.ashdavies.rx.rxtasks;
 
 import com.google.android.gms.tasks.Task;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 
-public class Tasks {
+public class RxTasks {
 
-  private Tasks() {
+  private RxTasks() {
     throw new IllegalStateException("No instances");
   }
 
@@ -14,7 +14,7 @@ public class Tasks {
     return Completable.create(new CompletableTaskOnSubscribe(task));
   }
 
-  public static <T> Single<T> single(final Task<T> task) {
+  public static <T> Single<T> single(Task<T> task) {
     return Single.create(new SingleTaskOnSubscribe<>(task));
   }
 }
