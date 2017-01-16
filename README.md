@@ -1,7 +1,7 @@
 ### Android RxTasks
-![Build Status](https://img.shields.io/travis/ashdavies/RxTasks.svg)
-![Coverage](https://img.shields.io/codecov/c/github/ashdavies/RxTasks.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-yellowgreen.svg)
+![Build Status](https://img.shields.io/travis/ashdavies/rx-tasks.svg)
+![Coverage](https://img.shields.io/codecov/c/github/ashdavies/rx-tasks.svg)
+![Version](https://img.shields.io/badge/version-1.1.1-yellowgreen.svg)
 ![License](https://img.shields.io/badge/license-apache%202.0-blue.svg)
 
 **Simple and lightweight RxJava2 wrapper for the GMS Tasks API**

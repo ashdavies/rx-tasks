@@ -52,9 +52,9 @@ dependencies {
 publish {
   userOrg = 'ashdavies'
   groupId = 'io.ashdavies.rx'
-  artifactId = 'rxtasks'
+  artifactId = 'rx-tasks'
 
   version = project.version
-  description = 'RxTasks'
+  description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
   website = 'https://github.com/ashdavies/RxTasks'
 }
