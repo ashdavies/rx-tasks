@@ -29,7 +29,7 @@ android {
   }
 
   defaultConfig {
-    minSdkVersion 19
+    minSdkVersion 14
     targetSdkVersion 25
 
     versionCode 1
@@ -56,5 +56,5 @@ publish {
 
   version = project.version
   description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
-  website = 'https://github.com/ashdavies/RxTasks'
+  website = 'https://github.com/ashdavies/rx-tasks'
 }

@@ -1,7 +1,7 @@
 ext.versions = [
 
     'appCompatV7' : '25.1.0',
-    'firebase'    : '9.8.0',
+    'firebase'    : '10.0.1',
 
     'playServices': '10.0.1',
     'rxJava'      : '2.0.0-RC2',
