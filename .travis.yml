@@ -7,26 +7,28 @@ jdk:
 android:
     components:
         - tools
+        - platform-tools
         - build-tools-25.0.2
         - android-25
-        - platform-tools
-        - extra-android-support
         - extra-android-m2repository
         - extra-google-m2repository
-        - extra-google-google_play_services
-    licenses:
-        - 'android-sdk-license-.+'
 
 cache:
   directories:
+    - $HOME/.m2
     - $HOME/.gradle
 
 before_script:
     - chmod +x gradlew
 
 script:
-    - ./gradlew clean test build library:bintrayUpload -PbintrayUser=$BINTRAY_USER -PbintrayKey=$BINTRAY_KEY -PdryRun=false
+    - ./gradlew build
 
 after_success:
-    - ./gradlew jacocoTestReport
-    - bash <(curl -s https://codecov.io/bash)
+    - ./gradlew jacocoTestReport && bash <(curl -s https://codecov.io/bash)
+    - if [ "${TRAVIS_BRANCH}" = "master" ]; then ./gradlew bintrayUpload -PbintrayUser=${BINTRAY_USER} -PbintrayKey=${BINTRAY_KEY}
+
+env:
+  global:
+    - secure: gG5ETnTOnwQg+D0YrMuQxFf5j/HFUIMWHvAKjdJP6uc3r1a/+mXFV1v9OEYHC/kzMVKujArNpgR4EkOoHvPMqqsnAzCrdFwP5dfbLxm3sia2NlOwPWBNzrAhMKIi/9Ziv0uSXuUXcezane5mvPSX9avE6HR+/yF1zfpHj2AWHLRfxwtRwflQrs9RTUZPntdxl2wBMgV0W2wgkwx/cdBAVKqSN1sASFqHF0oYpiFCFdW5R95CwdIj+7V0Y7cF1CnYnp8znTiQ+SuWYXYD+n7hLXJFia5yTIUoUPkd5LQ3vDZ4Rl26K25kfUkDvPHDVOWxjq0dSs61robyes6PJGO4vVzU8vpTDwMzuFp5Wbz0groazRhkY6/6qq3cLHBYM/KIVEH8boFgJ3JIcDPCcbKRRxD/TjTAuwE1COeP55C6Ky717F6A0rcIieuGue7d9HqyHNqNW32Bj5s3pDKn2E/ao3fgc4hYvviqr2nBkYzYljLx/xObWApZ0jYIMeXGS+supdbWKByYo3TAVP5a+ltfHg7jvDd3BX8kCJ3L+hpVQnACb+tn7W+CXIHqGRA3rhC/PZE0p4AT2fcWR4MQzF7E4/WuYbc1L/H03ntGE4WNsvHHoEr26EB96/UKF61UUzrS7olKQZ9TsKwkaBot7z6OufJNsXP7vu1pAnr3KsXIOa8=
+    - secure: jvIBZz8f++nlLGEHMZS1RFjCdcmKUZ0BZCWLsyuaNavJz/a3UuvCBlmaXpmZftIwLlAzxii2BFcUSEjmq6p81AQInwzmVvd+MqGEtN/XKt7ETpLuN3JvnWj6CCYcXw7TK8zXTk6NX6T0aJP7smVePT7NbYCR4xkrgEN4LbegM1d6MIQB46eElzx3OKeVmct8Z5ejWyeLKmXynikvcVE2vY2Fa3i3nh7wP7vHusNG/TRbFf1pQTmltixzx+/u9LHD1gXDYcuxisjAxmuV6JVNOuL4fkS0CDX3X6nu7rMJpomxeTn1cvu96aaEGYcWcti0wCa9eB1QUeQmo0+QrvdsO9eOCbAhMi0feFOO36vGdAhWyaKNMkzkDiAtujmeTDpmtw/UvL0xM0UdruxiiI9HZia1tppXoqNvqfE4m5+ePDyAhhH6mVplTD6C7gGV9jepapHv1qtUZy/9hl+prYUZIkfp/XopSbTIvZLmwmZfVNVcuZ5OJ6bcwfPby98TwUiiEdit0oQm8/2g/U5Q6uA5/Erwkc6TzVY5AlILasYxtYIN5B+xq6sigt7rjAKQja9H/voBJr2rxi5odtA+IVSsldzNMGe6riLV5G3fdor+T7gO5CQA2qFDAgJa54Gm5K/uxWNGJvVmpNwLV+MH7GEADjEee9iiSgu9QJBsx5l5VLc=

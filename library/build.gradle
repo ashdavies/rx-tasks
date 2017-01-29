@@ -4,7 +4,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.0-beta1'
+    classpath 'com.android.tools.build:gradle:2.3.0-beta3'
     classpath 'com.google.gms:google-services:3.0.0'
 
     classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
@@ -50,11 +50,11 @@ dependencies {
 }
 
 publish {
-  userOrg = 'ashdavies'
-  groupId = 'io.ashdavies.rx'
-  artifactId = 'rx-tasks'
+  userOrg = project.user
+  groupId = project.group
+  artifactId = project.name
 
   version = project.version
-  description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
-  website = 'https://github.com/ashdavies/rx-tasks'
+  description = project.description
+  website = 'https://github.com/ashdavies/${project.name}'
 }

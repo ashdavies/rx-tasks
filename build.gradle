@@ -3,5 +3,12 @@ allprojects {
     jcenter()
   }
 
-  version = '1.1.2'
+  ext {
+    user = 'ashdavies'
+    group = 'io.ashdavies.rx'
+
+    name = 'rx-tasks'
+    description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
+    version = '1.1.3'
+  }
 }
