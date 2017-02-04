@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -38,8 +37,8 @@ public class SingleTaskOnSubscribeTest {
 
     onSubscribe.subscribe(emitter);
 
-    verify(factory, times(1)).createOnSuccessListener(emitter);
-    verify(task, times(1)).addOnSuccessListener(onSuccessListener);
+    verify(factory).createOnSuccessListener(emitter);
+    verify(task).addOnSuccessListener(onSuccessListener);
   }
 
   @Test
@@ -48,7 +47,7 @@ public class SingleTaskOnSubscribeTest {
 
     onSubscribe.subscribe(emitter);
 
-    verify(factory, times(1)).createOnFailureListener(emitter);
-    verify(task, times(1)).addOnFailureListener(onFailureListener);
+    verify(factory).createOnFailureListener(emitter);
+    verify(task).addOnFailureListener(onFailureListener);
   }
 }

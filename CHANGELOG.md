@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.4 *(2017-02-04)*
+----------------------------
+ * Improved test coverage
+ * Updated dependency management
+
 Version 1.1.3 *(2017-01-29)*
 ----------------------------
 

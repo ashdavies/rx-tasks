@@ -9,7 +9,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -30,6 +29,6 @@ public class SingleEmitterFailureListenerTest {
     listener.onFailure(exception);
 
     verify(emitter, never()).onSuccess(anyString());
-    verify(emitter, times(1)).onError(exception);
+    verify(emitter).onError(exception);
   }
 }

@@ -9,7 +9,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,7 +27,7 @@ public class CompletableEmitterSuccessListenerTest {
   public void shouldCallOnComplete() throws Exception {
     listener.onSuccess(null);
 
-    verify(emitter, times(1)).onComplete();
+    verify(emitter).onComplete();
     verify(emitter, never()).onError(any(Throwable.class));
   }
 }

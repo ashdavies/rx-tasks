@@ -1,0 +1,50 @@
+ext {
+
+  sourceCompatibilityVersion = JavaVersion.VERSION_1_7
+  targetCompatibilityVersion = JavaVersion.VERSION_1_7
+
+  versions = [
+
+      'appCompat'   : '25.1.0',
+      'firebase'    : '10.0.1',
+
+      'playServices': '10.0.1',
+      'rxJava'      : '2.0.0-RC2',
+      'rxAndroid'   : '2.0.0-RC1',
+
+      'jUnit'       : '4.12',
+      'truth'       : '0.30',
+      'mockito'     : '1.10.19'
+
+  ]
+
+  libraries = [
+
+      'androidSupport': [
+
+          'appCompat': "com.android.support:appcompat-v7:$versions.appCompat"
+
+      ],
+
+      'playServices'  : [
+
+          'tasks': "com.google.android.gms:play-services-tasks:$versions.playServices"
+
+      ],
+
+      'firebase'      : [
+
+          'core': "com.google.firebase:firebase-core:$versions.firebase",
+          'auth': "com.google.firebase:firebase-auth:$versions.firebase",
+
+      ],
+
+      'rxAndroid'     : "io.reactivex.rxjava2:rxjava:$versions.rxAndroid",
+      'rxJava'        : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+
+      jUnit           : "junit:junit:$versions.jUnit",
+      truth           : "com.google.truth:truth:$versions.truth",
+      mockito         : "org.mockito:mockito-core:$versions.mockito"
+
+  ]
+}

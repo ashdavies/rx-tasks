@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,6 +28,6 @@ public class CompletableEmitterFailureListenerTest {
     listener.onFailure(exception);
 
     verify(emitter, never()).onComplete();
-    verify(emitter, times(1)).onError(exception);
+    verify(emitter).onError(exception);
   }
 }

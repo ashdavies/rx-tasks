@@ -16,7 +16,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
 apply plugin: 'jacoco-android'
 
-apply from: '../versions.gradle'
+apply from: '../dependencies.gradle'
 
 android {
   compileSdkVersion 25
@@ -42,19 +42,20 @@ android {
 }
 
 dependencies {
-  compile "com.google.android.gms:play-services-tasks:$versions.playServices"
-  compile "io.reactivex.rxjava2:rxjava:$versions.rxJava"
+  compile libraries.playServices.tasks
+  compile libraries.rxJava
 
-  testCompile "com.google.truth:truth:$versions.truth"
-  testCompile "org.mockito:mockito-core:$versions.mockito"
+  testCompile libraries.jUnit
+  testCompile libraries.truth
+  testCompile libraries.mockito
 }
 
 publish {
-  userOrg = project.user
-  groupId = project.group
-  artifactId = project.name
+  userOrg = 'ashdavies'
+  groupId = 'io.ashdavies.rx'
+  artifactId = 'rx-tasks'
 
   version = project.version
-  description = project.description
-  website = 'https://github.com/ashdavies/${project.name}'
+  description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
+  website = 'https://github.com/ashdavies/rx-tasks'
 }
