@@ -17,11 +17,14 @@ however this is not needed since scheduling and `Disposable`'s are handled by th
 Please note that this library uses RxJava2 so calls must respect Completable and Single chains.
 
 #### Usage
-Import to your project with the following statement
+Import to your project with the following statement:
+
 ```android
-    compile 'io.ashdavies.rx.tasks:1.1.3'
+    compile 'io.ashdavies.rx:rx-tasks:1.1.3'
 ```
+
 Any `Task` returned from the Google Mobile Services API can simply be wrapped in the appropriate call.
+
 ```android
-    Single<AuthResult> result = Tasks.single(FirebaseAuth.getInstance().signInAnonymously());
+    Single<AuthResult> result = RxTasks.single(FirebaseAuth.getInstance().signInAnonymously());
 ```
