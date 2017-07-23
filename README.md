@@ -1,7 +1,7 @@
 ### Android RxTasks
-![Build Status](https://img.shields.io/travis/ashdavies/rx-tasks.svg)
+[![Build Status](https://img.shields.io/travis/ashdavies/rx-tasks.svg)](https://travis-ci.org/ashdavies/rx-tasks)
 ![Coverage](https://img.shields.io/codecov/c/github/ashdavies/rx-tasks.svg)
-![Version](https://img.shields.io/badge/version-1.1.3-yellowgreen.svg)
+[![Download](https://api.bintray.com/packages/ashdavies/maven/rx-tasks/images/download.svg)](https://bintray.com/ashdavies/maven/rx-tasks/_latestVersion)
 ![License](https://img.shields.io/badge/license-apache%202.0-blue.svg)
 
 **Simple and lightweight RxJava2 wrapper for the GMS Tasks API**
@@ -20,7 +20,7 @@ Please note that this library uses RxJava2 so calls must respect Completable and
 Import to your project with the following statement:
 
 ```android
-    compile 'io.ashdavies.rx:rx-tasks:1.1.3'
+    compile 'io.ashdavies.rx:rx-tasks:{latest-version}'
 ```
 
 Any `Task` returned from the Google Mobile Services API can simply be wrapped in the appropriate call.
