@@ -8,8 +8,8 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-25.0.2
-    - android-25
+    - build-tools-25.0.3
+    - android-26
     - extra-android-m2repository
     - extra-google-m2repository
 
@@ -22,11 +22,17 @@ before_script:
   - chmod +x gradlew
 
 script:
-  - ./gradlew build
+  - ./gradlew library:build
 
 after_success:
   - ./gradlew jacocoTestReport && bash <(curl -s https://codecov.io/bash)
-  - if [ "${TRAVIS_BRANCH}" = "master" ]; then ./gradlew bintrayUpload -PbintrayUser=$BINTRAY_USER -PbintrayKey=$BINTRAY_KEY -PdryRun=false; fi
+
+deploy:
+  - provider: script
+    script: ./gradlew bintrayUpload -PbintrayUser=$BINTRAY_USER -PbintrayKey=$BINTRAY_KEY -PdryRun=false
+    skip_cleanup: true
+    on:
+      branch: master
 
 env:
   global:

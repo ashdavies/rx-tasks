@@ -1,57 +1,53 @@
 buildscript {
   repositories {
     jcenter()
+    google()
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.0-beta3'
-    classpath 'com.google.gms:google-services:3.0.0'
+    classpath "com.android.tools.build:gradle:$versions.android.tools"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    classpath "com.google.gms:google-services:$versions.google.services"
   }
 }
 
 apply plugin: 'com.android.application'
 
-apply from: '../dependencies.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion '25.0.2'
+  compileSdkVersion configuration.compileSdkVersion
+  buildToolsVersion configuration.buildToolsVersion
 
   defaultConfig {
     applicationId 'io.ashdavies.sample'
 
-    jackOptions {
-      enabled true
-    }
+    minSdkVersion configuration.minSdkVersion
+    targetSdkVersion configuration.targetSdkVersion
 
-    minSdkVersion 21
-    targetSdkVersion 25
-
-    versionCode 1
-    versionName project.version
+    versionCode configuration.versionCode
+    versionName configuration.versionName
   }
 
-  dexOptions {
-    javaMaxHeapSize '4g'
-  }
-
-  lintOptions {
-    abortOnError false
-    checkReleaseBuilds false
-    disable 'InvalidPackage'
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
   }
 }
 
 dependencies {
-  compile project(':library')
+  api project(path: ':library', configuration: 'default')
 
-  compile libraries.androidSupport.appCompat
+  api libraries.android.support.compat
 
-  compile libraries.firebase.core
-  compile libraries.firebase.auth
+  api libraries.kotlin
 
-  compile libraries.rxJava
-  compile libraries.rxAndroid
+  api libraries.firebase.core
+  api libraries.firebase.auth
+
+  api libraries.rx.java
+  api libraries.rx.android
 }
 
 apply plugin: 'com.google.gms.google-services'

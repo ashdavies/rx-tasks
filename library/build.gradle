@@ -1,14 +1,15 @@
 buildscript {
   repositories {
     jcenter()
+    google()
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.0-beta3'
-    classpath 'com.google.gms:google-services:3.0.0'
+    classpath "com.android.tools.build:gradle:$versions.android.tools"
+    classpath "com.google.gms:google-services:$versions.google.services"
 
     classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
-    classpath 'com.novoda:bintray-release:0.3.4'
+    classpath 'com.novoda:bintray-release:0.5.0'
   }
 }
 
@@ -16,38 +17,26 @@ apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
 apply plugin: 'jacoco-android'
 
-apply from: '../dependencies.gradle'
-
 android {
-  compileSdkVersion 25
-  buildToolsVersion '25.0.2'
-
-  buildTypes {
-    debug {
-      testCoverageEnabled true
-    }
-  }
+  compileSdkVersion configuration.compileSdkVersion
+  buildToolsVersion configuration.buildToolsVersion
 
   defaultConfig {
-    minSdkVersion 14
-    targetSdkVersion 25
+    minSdkVersion configuration.minSdkVersion
+    targetSdkVersion configuration.targetSdkVersion
 
-    versionCode 1
-    versionName project.version
-  }
-
-  testOptions {
-    unitTests.returnDefaultValues = true
+    versionCode configuration.versionCode
+    versionName configuration.versionName
   }
 }
 
 dependencies {
-  compile libraries.playServices.tasks
-  compile libraries.rxJava
+  api libraries.google.play.tasks
+  api libraries.rx.java
 
-  testCompile libraries.jUnit
-  testCompile libraries.truth
-  testCompile libraries.mockito
+  testApi libraries.jUnit
+  testApi libraries.truth
+  testApi libraries.mockito
 }
 
 publish {
@@ -55,7 +44,7 @@ publish {
   groupId = 'io.ashdavies.rx'
   artifactId = 'rx-tasks'
 
-  version = project.version
+  version = configuration.versionName
   description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
   website = 'https://github.com/ashdavies/rx-tasks'
 }

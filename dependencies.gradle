@@ -1,50 +1,77 @@
-ext {
+ext.configuration = [
+    compileSdkVersion  : 26,
+    buildToolsVersion  : '25.0.3',
 
-  sourceCompatibilityVersion = JavaVersion.VERSION_1_7
-  targetCompatibilityVersion = JavaVersion.VERSION_1_7
+    minSdkVersion      : 14,
+    targetSdkVersion   : 26,
 
-  versions = [
+    sourceCompatibility: JavaVersion.VERSION_1_7,
+    targetCompatibility: JavaVersion.VERSION_1_7,
 
-      'appCompat'   : '25.1.0',
-      'firebase'    : '10.0.1',
+    versionCode        : 1,
+    versionName        : '1.2.0'
+]
 
-      'playServices': '10.0.1',
-      'rxJava'      : '2.0.0-RC2',
-      'rxAndroid'   : '2.0.0-RC1',
+ext.versions = [
+    annotations: [
+        jsr305: '3.0.1'
+    ],
 
-      'jUnit'       : '4.12',
-      'truth'       : '0.30',
-      'mockito'     : '1.10.19'
+    android    : [
+        support: '25.3.1',
+        tools  : '3.0.0-alpha7'
+    ],
 
-  ]
+    google     : [
+        play    : [
+            services: '10.2.0'
+        ],
+        services: '3.1.0'
+    ],
 
-  libraries = [
+    kotlin     : '1.1.3',
 
-      'androidSupport': [
+    rx         : [
+        java    : '2.0.6',
+        android : '2.0.1',
+        firebase: '1.3.3',
+    ],
 
-          'appCompat': "com.android.support:appcompat-v7:$versions.appCompat"
+    jUnit      : '4.12',
+    truth      : '0.30',
+    mockito    : '1.10.19'
+]
 
-      ],
+ext.libraries = [
+    annotations: [
+        jsr305: "com.google.code.findbugs:jsr305:$versions.annotations.jsr305"
+    ],
 
-      'playServices'  : [
+    android    : [
+        support: [
+            compat: "com.android.support:appcompat-v7:$versions.android.support",
+        ]
+    ],
 
-          'tasks': "com.google.android.gms:play-services-tasks:$versions.playServices"
+    google     : [
+        play: [
+            tasks: "com.google.android.gms:play-services-tasks:$versions.google.play.services"
+        ]
+    ],
 
-      ],
+    firebase   : [
+        core: "com.google.firebase:firebase-core:$versions.google.play.services",
+        auth: "com.google.firebase:firebase-auth:$versions.google.play.services",
+    ],
 
-      'firebase'      : [
+    rx         : [
+        java   : "io.reactivex.rxjava2:rxjava:$versions.rx.java",
+        android: "io.reactivex.rxjava2:rxandroid:$versions.rx.android",
+    ],
 
-          'core': "com.google.firebase:firebase-core:$versions.firebase",
-          'auth': "com.google.firebase:firebase-auth:$versions.firebase",
+    kotlin     : "org.jetbrains.kotlin:kotlin-stdlib-jre8:$versions.kotlin",
 
-      ],
-
-      'rxAndroid'     : "io.reactivex.rxjava2:rxjava:$versions.rxAndroid",
-      'rxJava'        : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
-
-      jUnit           : "junit:junit:$versions.jUnit",
-      truth           : "com.google.truth:truth:$versions.truth",
-      mockito         : "org.mockito:mockito-core:$versions.mockito"
-
-  ]
-}
+    jUnit      : "junit:junit:$versions.jUnit",
+    truth      : "com.google.truth:truth:$versions.truth",
+    mockito    : "org.mockito:mockito-core:$versions.mockito"
+]
