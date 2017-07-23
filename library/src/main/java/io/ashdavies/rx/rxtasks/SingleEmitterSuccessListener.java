@@ -2,6 +2,7 @@ package io.ashdavies.rx.rxtasks;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import io.reactivex.SingleEmitter;
+import io.reactivex.annotations.Nullable;
 
 class SingleEmitterSuccessListener<T> implements OnSuccessListener<T> {
 
@@ -12,7 +13,11 @@ class SingleEmitterSuccessListener<T> implements OnSuccessListener<T> {
   }
 
   @Override
-  public void onSuccess(T t) {
+  public void onSuccess(@Nullable T t) {
+    if (t == null) {
+      emitter.onError(new NullPointerException());
+    }
+
     emitter.onSuccess(t);
   }
 }

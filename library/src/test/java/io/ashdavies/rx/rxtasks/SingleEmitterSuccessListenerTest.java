@@ -7,9 +7,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SingleEmitterSuccessListenerTest {
@@ -29,7 +29,14 @@ public class SingleEmitterSuccessListenerTest {
   public void shouldCallOnSuccess() throws Exception {
     listener.onSuccess(RESULT);
 
-    verify(emitter).onSuccess(RESULT);
-    verify(emitter, never()).onError(any(Throwable.class));
+    then(emitter).should().onSuccess(RESULT);
+    then(emitter).should(never()).onError(any(Throwable.class));
+  }
+
+  @Test
+  public void shouldEmitErrorOnNull() throws Exception {
+    listener.onSuccess(null);
+
+    then(emitter).should().onError(any(NullPointerException.class));
   }
 }
