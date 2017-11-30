@@ -7,4 +7,18 @@ allprojects {
 
 buildscript {
   apply from: file('dependencies.gradle')
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:$versions.android.tools"
+    classpath "com.google.gms:google-services:$versions.google.services"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+
+    classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+    classpath 'com.novoda:bintray-release:0.7.0'
+  }
+
+  repositories {
+    jcenter()
+    google()
+  }
 }
