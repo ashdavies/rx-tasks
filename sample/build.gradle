@@ -26,15 +26,14 @@ android {
 dependencies {
   api project(path: ':library', configuration: 'default')
 
-  api libraries.android.support.compat
+  implementation libraries.android.support.compat
+  implementation libraries.kotlin
 
-  api libraries.kotlin
+  implementation libraries.firebase.core
+  implementation libraries.firebase.auth
 
-  api libraries.firebase.core
-  api libraries.firebase.auth
-
-  api libraries.rx.java
-  api libraries.rx.android
+  implementation libraries.rx.java
+  implementation libraries.rx.android
 }
 
 apply plugin: 'com.google.gms.google-services'

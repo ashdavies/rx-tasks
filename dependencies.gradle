@@ -9,7 +9,7 @@ ext.configuration = [
     targetCompatibility: JavaVersion.VERSION_1_7,
 
     versionCode        : 1,
-    versionName        : '1.3.0'
+    versionName        : '2.0.0'
 ]
 
 ext.versions = [
@@ -39,7 +39,10 @@ ext.versions = [
 
     jUnit      : '4.12',
     truth      : '0.30',
-    mockito    : '1.10.19'
+    mockito    : [
+        core  : '1.10.19',
+        kotlin: '1.5.0'
+    ]
 ]
 
 ext.libraries = [
@@ -73,5 +76,9 @@ ext.libraries = [
 
     jUnit      : "junit:junit:$versions.jUnit",
     truth      : "com.google.truth:truth:$versions.truth",
-    mockito    : "org.mockito:mockito-core:$versions.mockito"
+
+    mockito    : [
+        core  : "org.mockito:mockito-core:$versions.mockito.core",
+        kotlin: "com.nhaarman:mockito-kotlin-kt1.1:$versions.mockito.kotlin"
+    ]
 ]
