@@ -10,7 +10,7 @@ internal class SingleEmitterSuccessListener<T>(private val emitter: SingleEmitte
       emitter.onError(NullPointerException())
       return
     }
-    
+
     emitter.onSuccess(t)
   }
 }
