@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
 apply plugin: 'jacoco-android'
+apply plugin: 'kotlin-android'
 
 android {
   compileSdkVersion configuration.compileSdkVersion
@@ -13,15 +14,23 @@ android {
     versionCode configuration.versionCode
     versionName configuration.versionName
   }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+  }
 }
 
 dependencies {
-  api libraries.google.play.tasks
-  api libraries.rx.java
+  implementation libraries.google.play.tasks
+  implementation libraries.kotlin
+  implementation libraries.rx.java
 
-  testApi libraries.jUnit
-  testApi libraries.truth
-  testApi libraries.mockito
+  testImplementation libraries.jUnit
+  testImplementation libraries.truth
+
+  testImplementation libraries.mockito.core
+  testImplementation libraries.mockito.kotlin
 }
 
 publish {
