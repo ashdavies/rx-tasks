@@ -6,7 +6,8 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import io.ashdavies.rx.rxtasks.RxTasks
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_main.*
+import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.activity_main.greeting
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,13 +32,15 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun signInAnonymously() {
-    val disposable = RxTasks.single<AuthResult>(FirebaseAuth.getInstance().signInAnonymously())
+    disposables += RxTasks.single<AuthResult>(FirebaseAuth.getInstance().signInAnonymously())
         .subscribe { result -> greetAnonymousUser(result.getUser().getUid()) }
-
-    disposables.add(disposable)
   }
 
   private fun greetAnonymousUser(user: String) {
     greeting.text = getString(R.string.greeting_anonymous, user)
+  }
+
+  private operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
+    add(disposable)
   }
 }
