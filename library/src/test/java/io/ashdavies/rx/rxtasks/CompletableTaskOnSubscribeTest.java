@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CompletableTaskOnSubscribeTest {
@@ -33,21 +33,21 @@ public class CompletableTaskOnSubscribeTest {
 
   @Test
   public void shouldSubscribeWithOnSuccessListener() throws Exception {
-    when(factory.createOnSuccessListener(emitter)).thenReturn(onSuccessListener);
+    given(factory.createOnSuccessListener(emitter)).willReturn(onSuccessListener);
 
     onSubscribe.subscribe(emitter);
 
-    verify(factory).createOnSuccessListener(emitter);
-    verify(task).addOnSuccessListener(onSuccessListener);
+    then(factory).should().createOnSuccessListener(emitter);
+    then(task).should().addOnSuccessListener(onSuccessListener);
   }
 
   @Test
   public void shouldSubscribeWithOnFailureListener() throws Exception {
-    when(factory.createOnFailureListener(emitter)).thenReturn(onFailureListener);
+    given(factory.createOnFailureListener(emitter)).willReturn(onFailureListener);
 
     onSubscribe.subscribe(emitter);
 
-    verify(factory).createOnFailureListener(emitter);
-    verify(task).addOnFailureListener(onFailureListener);
+    then(factory).should().createOnFailureListener(emitter);
+    then(task).should().addOnFailureListener(onFailureListener);
   }
 }

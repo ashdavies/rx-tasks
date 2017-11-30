@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CompletableEmitterFailureListenerTest {
@@ -27,7 +27,7 @@ public class CompletableEmitterFailureListenerTest {
   public void shouldCallOnErrorWithException() throws Exception {
     listener.onFailure(exception);
 
-    verify(emitter, never()).onComplete();
-    verify(emitter).onError(exception);
+    then(emitter).should(never()).onComplete();
+    then(emitter).should().onError(exception);
   }
 }

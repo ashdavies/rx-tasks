@@ -2,6 +2,7 @@ package io.ashdavies.rx.rxtasks;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import io.reactivex.observers.TestObserver;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
@@ -15,8 +16,11 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.google.common.truth.Truth.assertThat;
+import static io.ashdavies.rx.rxtasks.RxTasks.completable;
+import static io.ashdavies.rx.rxtasks.RxTasks.single;
 import static org.hamcrest.CoreMatchers.any;
-import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentCaptor.forClass;
+import static org.mockito.BDDMockito.then;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RxTasksTest {
@@ -50,22 +54,34 @@ public class RxTasksTest {
   @Test
   @SuppressWarnings("unchecked")
   public void shouldCreateCompletableTask() throws Exception {
-    ArgumentCaptor<OnSuccessListener> captor = ArgumentCaptor.forClass(OnSuccessListener.class);
+    ArgumentCaptor<OnSuccessListener> captor = forClass(OnSuccessListener.class);
 
-    RxTasks.completable(task).subscribe();
+    completable(task).subscribe();
 
-    verify(task).addOnSuccessListener(captor.capture());
+    then(task).should().addOnSuccessListener(captor.capture());
     assertThat(captor.getValue()).isInstanceOf(CompletableEmitterSuccessListener.class);
   }
 
   @Test
   @SuppressWarnings("unchecked")
   public void shouldCreateSingleTask() throws Exception {
-    ArgumentCaptor<OnSuccessListener> captor = ArgumentCaptor.forClass(OnSuccessListener.class);
+    ArgumentCaptor<OnSuccessListener> captor = forClass(OnSuccessListener.class);
 
-    RxTasks.completable(task).subscribe();
+    completable(task).subscribe();
 
-    verify(task).addOnSuccessListener(captor.capture());
+    then(task).should().addOnSuccessListener(captor.capture());
     assertThat(captor.getValue()).isInstanceOf(CompletableEmitterSuccessListener.class);
+  }
+
+  @Test
+  @SuppressWarnings("unchecked")
+  public void shouldEmitNullPointerException() throws Exception {
+    ArgumentCaptor<OnSuccessListener> captor = forClass(OnSuccessListener.class);
+    TestObserver<Void> observer = single(task).test();
+
+    then(task).should().addOnSuccessListener(captor.capture());
+    captor.getValue().onSuccess(null);
+
+    observer.assertError(NullPointerException.class);
   }
 }
