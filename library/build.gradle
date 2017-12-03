@@ -42,3 +42,7 @@ publish {
   description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
   website = 'https://github.com/ashdavies/rx-tasks'
 }
+
+tasks.withType(Javadoc).all {
+  enabled = false
+}
