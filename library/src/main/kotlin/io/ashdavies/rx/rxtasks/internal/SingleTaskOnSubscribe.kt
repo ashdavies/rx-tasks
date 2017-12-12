@@ -1,4 +1,4 @@
-package io.ashdavies.rx.rxtasks
+package io.ashdavies.rx.rxtasks.internal
 
 import com.google.android.gms.tasks.Task
 import io.reactivex.SingleEmitter

@@ -1,8 +1,9 @@
 package io.ashdavies.rx.rxtasks
 
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import io.ashdavies.rx.rxtasks.internal.CompletableTaskOnSubscribe
+import io.ashdavies.rx.rxtasks.internal.TaskListenerFactory
 import io.reactivex.CompletableEmitter
 import io.reactivex.CompletableOnSubscribe
 import org.junit.Before
@@ -22,8 +23,7 @@ internal class CompletableTaskOnSubscribeTest {
   @Mock private lateinit var emitter: CompletableEmitter
 
   @Mock private lateinit var factory: TaskListenerFactory<Void, CompletableEmitter>
-  @Mock private lateinit var onSuccessListener: OnSuccessListener<Void>
-  @Mock private lateinit var onFailureListener: OnFailureListener
+  @Mock private lateinit var onCompleteListener: OnCompleteListener<Void>
 
   @Before
   fun `set up`() {
@@ -31,22 +31,12 @@ internal class CompletableTaskOnSubscribeTest {
   }
 
   @Test
-  fun `should subscribe with on success listener`() {
-    given(factory.createOnSuccessListener(emitter)).willReturn(onSuccessListener)
+  fun `should subscribe with listener`() {
+    given(factory.createOnCompleteListener(emitter)).willReturn(onCompleteListener)
 
     onSubscribe.subscribe(emitter)
 
-    then(factory).should().createOnSuccessListener(emitter)
-    then(task).should().addOnSuccessListener(onSuccessListener)
-  }
-
-  @Test
-  fun `should subscribe with on failure listener`() {
-    given(factory.createOnFailureListener(emitter)).willReturn(onFailureListener)
-
-    onSubscribe.subscribe(emitter)
-
-    then(factory).should().createOnFailureListener(emitter)
-    then(task).should().addOnFailureListener(onFailureListener)
+    then(factory).should().createOnCompleteListener(emitter)
+    then(task).should().addOnCompleteListener(onCompleteListener)
   }
 }

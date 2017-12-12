@@ -1,19 +1,13 @@
 package io.ashdavies.rx.rxtasks
 
 import com.google.android.gms.tasks.Task
+import io.ashdavies.rx.rxtasks.internal.CompletableTaskOnSubscribe
+import io.ashdavies.rx.rxtasks.internal.SingleTaskOnSubscribe
 import io.reactivex.Completable
 import io.reactivex.Single
 
-class RxTasks private constructor() {
+object RxTasks {
+  fun completable(task: Task<Void>): Completable = Completable.create(CompletableTaskOnSubscribe(task))
 
-  companion object {
-
-    fun completable(task: Task<Void>): Completable {
-      return Completable.create(CompletableTaskOnSubscribe(task))
-    }
-
-    fun <T> single(task: Task<T>): Single<T> {
-      return Single.create(SingleTaskOnSubscribe(task))
-    }
-  }
+  fun <T> single(task: Task<T>): Single<T> = Single.create(SingleTaskOnSubscribe(task))
 }
