@@ -1,15 +1,12 @@
 ext.configuration = [
     compileSdkVersion  : 27,
-    buildToolsVersion  : '27.0.1',
+    buildToolsVersion  : '27.0.2',
 
     minSdkVersion      : 14,
     targetSdkVersion   : 27,
 
     sourceCompatibility: JavaVersion.VERSION_1_7,
     targetCompatibility: JavaVersion.VERSION_1_7,
-
-    versionCode        : 1,
-    versionName        : '2.0.0'
 ]
 
 ext.versions = [
