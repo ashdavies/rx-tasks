@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'bintray-release'
+apply plugin: 'org.shipkit.java'
 apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android'
 
@@ -31,18 +31,4 @@ dependencies {
 
   testImplementation libraries.mockito.core
   testImplementation libraries.mockito.kotlin
-}
-
-publish {
-  userOrg = 'ashdavies'
-  groupId = 'io.ashdavies.rx'
-  artifactId = 'rx-tasks'
-
-  version = configuration.versionName
-  description = 'Simple and lightweight RxJava2 wrapper for the GMS Tasks API'
-  website = 'https://github.com/ashdavies/rx-tasks'
-}
-
-tasks.withType(Javadoc).all {
-  enabled = false
 }
