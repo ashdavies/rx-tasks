@@ -1,6 +1,9 @@
 package io.ashdavies.rx.rxtasks
 
 import com.google.common.truth.Truth.assertThat
+import io.ashdavies.rx.rxtasks.internal.CompletableEmitterListener
+import io.ashdavies.rx.rxtasks.internal.CompletableTaskListenerFactory
+import io.ashdavies.rx.rxtasks.internal.TaskListenerFactory
 import io.reactivex.CompletableEmitter
 import org.junit.Before
 import org.junit.Test
@@ -21,12 +24,7 @@ internal class CompletableTaskListenerFactoryTest {
   }
 
   @Test
-  fun `should return completable emitter success listener`() {
-    assertThat(factory.createOnSuccessListener(emitter)).isInstanceOf(CompletableEmitterSuccessListener::class.java)
-  }
-
-  @Test
-  fun `should return completable emitter failure listener`() {
-    assertThat(factory.createOnFailureListener(emitter)).isInstanceOf(CompletableEmitterFailureListener::class.java)
+  fun `should return completable emitter listener`() {
+    assertThat(factory.createOnCompleteListener(emitter)).isInstanceOf(CompletableEmitterListener::class.java)
   }
 }

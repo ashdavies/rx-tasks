@@ -2,9 +2,8 @@ package io.ashdavies.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import io.ashdavies.rx.rxtasks.RxTasks
+import io.ashdavies.rx.rxtasks.toSingle
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.greeting
@@ -32,8 +31,8 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun signInAnonymously() {
-    disposables += RxTasks.single<AuthResult>(FirebaseAuth.getInstance().signInAnonymously())
-        .subscribe { result -> greetAnonymousUser(result.getUser().getUid()) }
+    disposables += FirebaseAuth.getInstance().signInAnonymously().toSingle()
+        .subscribe { result -> greetAnonymousUser(result.user.uid) }
   }
 
   private fun greetAnonymousUser(user: String) {
