@@ -15,7 +15,7 @@ android:
 
 branches:
   except:
-  - /^v\d/
+  - /^v\d$/
 
 cache:
   directories:
@@ -26,7 +26,7 @@ before_script:
   - chmod +x gradlew
 
 script:
-  - ./gradlew library:build
+  - ./gradlew build
 
 after_success:
   - ./gradlew jacocoTestReport && bash <(curl -s https://codecov.io/bash)

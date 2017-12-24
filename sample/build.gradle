@@ -17,6 +17,10 @@ android {
     versionName configuration.versionName
   }
 
+  lintOptions {
+    disable 'GradleCompatible', 'UnusedResources'
+  }
+
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
     test.java.srcDirs += 'src/test/kotlin'

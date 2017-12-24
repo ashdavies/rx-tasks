@@ -3,6 +3,8 @@ shipkit {
   gitHub.readOnlyAuthToken = 'd395a2d44543a2cc2ca991e9a60ba650cda8b46f'
 
   gitHub.writeAuthToken = System.env.GITHUB_TOKEN
+
+  releaseNotes.publicationRepository = 'https://bintray.com/ashdavies/maven/rx-tasks'
 }
 
 allprojects {
