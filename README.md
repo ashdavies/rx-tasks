@@ -23,8 +23,10 @@ Import to your project with the following statement:
     compile 'io.ashdavies.rx:rx-tasks:{latest-version}'
 ```
 
-Any `Task` returned from the Google Mobile Services API can simply be wrapped in the appropriate call.
+Any `Task` returned from the Google Mobile Services API can simply be wrapped in the appropriate call using an extension function.
 
 ```android
-    Single<AuthResult> result = RxTasks.single(FirebaseAuth.getInstance().signInAnonymously());
+    Single<AuthResult> result = FirebaseAuth.getInstance()
+      .signInAnonymously()
+      .toSingle()
 ```

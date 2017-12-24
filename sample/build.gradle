@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-  api project(path: ':library', configuration: 'default')
+  implementation project(':library')
 
   implementation libraries.android.support.compat
   implementation libraries.kotlin

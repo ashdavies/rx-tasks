@@ -4,49 +4,38 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import com.nhaarman.mockito_kotlin.given
+import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.then
 import io.reactivex.SingleEmitter
-import io.reactivex.SingleOnSubscribe
-import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
 class SingleTaskOnSubscribeTest {
 
-  private lateinit var onSubscribe: SingleOnSubscribe<String>
+  private val task = mock<Task<Any>>()
+  private val emitter = mock<SingleEmitter<Any>>()
+  private val factory = mock<TaskListenerFactory<Any, SingleEmitter<Any>>>()
+  private val success = mock<OnSuccessListener<Any>>()
+  private val failure = mock<OnFailureListener>()
 
-  @Mock private lateinit var task: Task<String>
-  @Mock private lateinit var emitter: SingleEmitter<String>
-
-  @Mock private lateinit var factory: TaskListenerFactory<String, SingleEmitter<String>>
-  @Mock private lateinit var onSuccessListener: OnSuccessListener<String>
-  @Mock private lateinit var onFailureListener: OnFailureListener
-
-  @Before
-  fun `set up`() {
-    onSubscribe = SingleTaskOnSubscribe(task, factory)
-  }
+  private val subscribe = SingleTaskOnSubscribe(task, factory)
 
   @Test
   fun `should subscribe with on success listener`() {
-    given(factory.createOnSuccessListener(emitter)).willReturn(onSuccessListener)
+    given(factory.createOnSuccessListener(emitter)).willReturn(success)
 
-    onSubscribe.subscribe(emitter)
+    subscribe.subscribe(emitter)
 
     then(factory).should().createOnSuccessListener(emitter)
-    then(task).should().addOnSuccessListener(onSuccessListener)
+    then(task).should().addOnSuccessListener(success)
   }
 
   @Test
   fun `should subscribe with on failure listener`() {
-    given(factory.createOnFailureListener(emitter)).willReturn(onFailureListener)
+    given(factory.createOnFailureListener(emitter)).willReturn(failure)
 
-    onSubscribe.subscribe(emitter)
+    subscribe.subscribe(emitter)
 
     then(factory).should().createOnFailureListener(emitter)
-    then(task).should().addOnFailureListener(onFailureListener)
+    then(task).should().addOnFailureListener(failure)
   }
 }

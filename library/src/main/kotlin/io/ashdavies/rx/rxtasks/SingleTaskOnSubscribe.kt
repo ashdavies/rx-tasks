@@ -4,6 +4,6 @@ import com.google.android.gms.tasks.Task
 import io.reactivex.SingleEmitter
 import io.reactivex.SingleOnSubscribe
 
-internal class SingleTaskOnSubscribe<Result> @JvmOverloads constructor(
-    task: Task<Result>, factory: TaskListenerFactory<Result, SingleEmitter<Result>> = SingleTaskListenerFactory()
-) : TaskOnSubscribe<Result, SingleEmitter<Result>>(task, factory), SingleOnSubscribe<Result>
+internal class SingleTaskOnSubscribe<T>(
+    task: Task<T>, factory: TaskListenerFactory<T, SingleEmitter<T>> = SingleTaskListenerFactory()
+) : TaskOnSubscribe<T, SingleEmitter<T>>(task, factory), SingleOnSubscribe<T>
