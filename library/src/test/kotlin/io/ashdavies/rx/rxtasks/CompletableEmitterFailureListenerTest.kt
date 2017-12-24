@@ -1,27 +1,18 @@
 package io.ashdavies.rx.rxtasks
 
+import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.CompletableEmitter
-import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.BDDMockito.then
-import org.mockito.Mock
 import org.mockito.Mockito.never
-import org.mockito.junit.MockitoJUnitRunner
 import java.lang.Exception
 
-@RunWith(MockitoJUnitRunner::class)
 internal class CompletableEmitterFailureListenerTest {
 
-  private lateinit var listener: CompletableEmitterFailureListener
+  private val emitter = mock<CompletableEmitter>()
+  private val exception = mock<Exception>()
 
-  @Mock private lateinit var emitter: CompletableEmitter
-  @Mock private lateinit var exception: Exception
-
-  @Before
-  fun `set up`() {
-    listener = CompletableEmitterFailureListener(emitter)
-  }
+  private val listener = CompletableEmitterFailureListener(emitter)
 
   @Test
   fun `should call on error with exception`() {

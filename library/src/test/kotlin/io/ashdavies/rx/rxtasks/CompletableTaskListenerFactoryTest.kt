@@ -1,24 +1,14 @@
 package io.ashdavies.rx.rxtasks
 
 import com.google.common.truth.Truth.assertThat
+import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.CompletableEmitter
-import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
 internal class CompletableTaskListenerFactoryTest {
 
-  private lateinit var factory: TaskListenerFactory<Void, CompletableEmitter>
-
-  @Mock private lateinit var emitter: CompletableEmitter
-
-  @Before
-  fun `set up`() {
-    factory = CompletableTaskListenerFactory()
-  }
+  private val emitter = mock<CompletableEmitter>()
+  private val factory = CompletableTaskListenerFactory()
 
   @Test
   fun `should return completable emitter success listener`() {
