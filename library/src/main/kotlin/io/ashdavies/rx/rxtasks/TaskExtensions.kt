@@ -1,9 +1,10 @@
+// for single function call, inlining is just fine
+@file:Suppress("NOTHING_TO_INLINE")
+
 package io.ashdavies.rx.rxtasks
 
 import com.google.android.gms.tasks.Task
-import io.reactivex.Completable
-import io.reactivex.Single
 
-fun Task<Void>.toCompletable(): Completable = Completable.create(CompletableTaskOnSubscribe(this))
+inline fun Task<Void>.toCompletable() = RxTasks.completable(this)
 
-fun <T> Task<T>.toSingle(): Single<T> = Single.create(SingleTaskOnSubscribe(this))
+inline fun <T> Task<T>.toSingle() = RxTasks.single(this)
