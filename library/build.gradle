@@ -3,6 +3,17 @@ apply plugin: 'org.shipkit.java'
 apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android'
 
+buildscript {
+  dependencies {
+    classpath "org.shipkit:shipkit:$versions.shipkit"
+    classpath "com.dicedmelon.gradle:jacoco-android:$versions.jacoco"
+  }
+
+  repositories {
+    maven { url 'https://plugins.gradle.org/m2/' }
+  }
+}
+
 android {
   compileSdkVersion configuration.compileSdkVersion
   buildToolsVersion configuration.buildToolsVersion
@@ -16,8 +27,8 @@ android {
   }
 
   sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-    test.java.srcDirs += 'src/test/kotlin'
+    main.java.srcDirs 'src/main/kotlin'
+    test.java.srcDirs 'src/test/kotlin'
   }
 }
 
