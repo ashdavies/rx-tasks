@@ -1,6 +1,6 @@
 ext.configuration = [
     compileSdkVersion  : 27,
-    buildToolsVersion  : '27.0.2',
+    buildToolsVersion  : '27.0.3',
 
     minSdkVersion      : 14,
     targetSdkVersion   : 27,
@@ -10,70 +10,66 @@ ext.configuration = [
 ]
 
 ext.versions = [
-    annotations: [
-        jsr305: '3.0.2'
-    ],
-
-    android    : [
+    android: [
         support: '27.0.2',
-        tools  : '3.0.1'
+        tools  : '3.2.0-alpha03'
     ],
 
-    google     : [
+    google : [
         play    : [
             services: '11.8.0'
         ],
         services: '3.1.2'
     ],
 
-    kotlin     : '1.2.10',
+    jacoco : '0.1.1',
+    kotlin : '1.2.21',
 
-    rx         : [
-        java    : '2.1.7',
-        android : '2.0.1',
+    rx     : [
+        java   : '2.1.7',
+        android: '2.0.1',
     ],
 
-    jUnit      : '4.12',
-    truth      : '0.30',
-    mockito    : [
+    shipkit: '2.0.2',
+
+    jUnit  : '4.12',
+    truth  : '0.30',
+    mockito: [
         core  : '1.10.19',
         kotlin: '1.5.0'
     ]
 ]
 
 ext.libraries = [
-    annotations: [
-        jsr305: "com.google.code.findbugs:jsr305:$versions.annotations.jsr305"
-    ],
-
-    android    : [
+    android : [
         support: [
-            compat: "com.android.support:appcompat-v7:$versions.android.support",
+            compat    : "com.android.support:appcompat-v7:$versions.android.support",
+            constraint: 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
         ]
     ],
 
-    google     : [
+    google  : [
         play: [
             tasks: "com.google.android.gms:play-services-tasks:$versions.google.play.services"
         ]
     ],
 
-    firebase   : [
+    firebase: [
         core: "com.google.firebase:firebase-core:$versions.google.play.services",
         auth: "com.google.firebase:firebase-auth:$versions.google.play.services",
     ],
 
-    rx         : [
+    rx      : [
         java   : "io.reactivex.rxjava2:rxjava:$versions.rx.java",
         android: "io.reactivex.rxjava2:rxandroid:$versions.rx.android",
     ],
 
-    kotlin     : "org.jetbrains.kotlin:kotlin-stdlib-jre8:$versions.kotlin",
+    kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jre8:$versions.kotlin",
 
-    jUnit      : "junit:junit:$versions.jUnit",
-    truth      : "com.google.truth:truth:$versions.truth",
+    jUnit   : "junit:junit:$versions.jUnit",
+    truth   : "com.google.truth:truth:$versions.truth",
 
-    mockito    : [
+    mockito : [
         core  : "org.mockito:mockito-core:$versions.mockito.core",
         kotlin: "com.nhaarman:mockito-kotlin-kt1.1:$versions.mockito.kotlin"
     ]

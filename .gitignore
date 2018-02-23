@@ -16,6 +16,7 @@ build.log
 build-log.xml
 
 # Local configuration files (android, sdk path, etc)
+gradle.properties
 local.properties
 
 .project
@@ -32,6 +33,9 @@ tmp/
 *.iws
 .idea/
 .gradle/
+
+# Google services config file
+google-services.json
 
 # MAC
 *.DS_Store

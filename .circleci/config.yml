@@ -1,0 +1,44 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/rx-tasks
+
+    docker:
+      - image: circleci/android:api-27-alpha
+
+    environment:
+      ANDROID_HOME: /opt/android/sdk
+      APPLICATION_ID: io.ashdavies.sample
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+
+      - run:
+          name: Decrypt Google services configuration
+          command: openssl aes-256-cbc -d -in sample/google-services.json.enc -out sample/google-services.json -k $GOOGLE_SERVICES_KEY
+
+      - run:
+          name: Run Gradle :check command
+          command: ./gradlew check --continue -Djava.util.concurrent.ForkJoinPool.common.parallelism=2
+
+      - save_cache:
+          paths:
+            - /usr/local/android-sdk-linux/tools
+            - /usr/local/android-sdk-linux/platform-tools
+            - /usr/local/android-sdk-linux/build-tools
+            - /usr/local/android-sdk-linux/licenses
+            - /usr/local/android-sdk-linux/extras/google/m2repository
+            - ~/.gradle
+
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+
+      - store_artifacts:
+          path: library/build/reports
+          destination: reports
+
+      - store_test_results:
+          path: library/build/test-results
