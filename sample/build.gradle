@@ -5,7 +5,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion configuration.compileSdkVersion
-  buildToolsVersion configuration.buildToolsVersion
 
   defaultConfig {
     applicationId 'io.ashdavies.sample'
@@ -15,10 +14,6 @@ android {
 
     versionCode configuration.versionCode
     versionName configuration.versionName
-  }
-
-  lintOptions {
-    disable 'GradleCompatible', 'UnusedResources'
   }
 
   sourceSets {

@@ -6,20 +6,28 @@ allprojects {
 }
 
 buildscript {
-  apply from: file('gradle/dependencies.gradle')
+  def gradleScriptDir = "${rootProject.projectDir}/gradle"
+  apply from: "${gradleScriptDir}/dependencies.gradle"
 
   dependencies {
     classpath "com.android.tools.build:gradle:$versions.android.tools"
     classpath "com.google.gms:google-services:$versions.google.services"
+    classpath "com.dicedmelon.gradle:jacoco-android:$versions.jacoco"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    classpath "org.shipkit:shipkit:$versions.shipkit"
   }
 
   repositories {
     google()
     jcenter()
+
+    maven { url 'https://plugins.gradle.org/m2/' }
   }
 }
 
-task clean(type: Delete) {
-  delete rootProject.buildDir
+apply plugin: 'org.shipkit.java'
+allprojects {
+  plugins.withId("java") {
+    bintrayUpload.enabled = false
+  }
 }

@@ -5,5 +5,5 @@ import io.reactivex.SingleEmitter
 import io.reactivex.SingleOnSubscribe
 
 internal class SingleTaskOnSubscribe<T>(
-    task: Task<T>, factory: TaskListenerFactory<T, SingleEmitter<T>> = SingleTaskListenerFactory()
+    task: Task<T>, factory: TaskListenerFactory<T, SingleEmitter<T>>
 ) : TaskOnSubscribe<T, SingleEmitter<T>>(task, factory), SingleOnSubscribe<T>

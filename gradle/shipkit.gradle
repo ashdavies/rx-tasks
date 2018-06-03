@@ -2,32 +2,37 @@ shipkit {
   gitHub.repository = 'ashdavies/rx-tasks'
   gitHub.readOnlyAuthToken = 'd395a2d44543a2cc2ca991e9a60ba650cda8b46f'
 
-  gitHub.writeAuthToken = System.env.GITHUB_TOKEN
+  gitHub.writeAuthUser = getEnvProperty('GITHUB_USER')
+  gitHub.writeAuthToken = getEnvProperty('GITHUB_TOKEN')
 
-  releaseNotes.publicationRepository = 'https://bintray.com/ashdavies/maven/rx-tasks'
+  releaseNotes.file = "docs/release-notes/official.md"
 }
 
 allprojects {
-  plugins.withId('com.jfrog.bintray') {
+  plugins.withId('org.shipkit.bintray') {
     bintray {
-      key = System.env.BINTRAY_KEY
+      key = getEnvProperty('BINTRAY_KEY')
 
       pkg {
-        repo = 'rx-tasks'
+        repo = 'maven'
         user = 'ashdavies'
         userOrg = 'ashdavies'
-        name = 'maven'
+        name = 'rx-tasks'
         licenses = ['Apache 2.0']
         labels = ['rxjava2', 'reactive-extensions', 'gms', 'android', 'firebase']
 
         version {
           mavenCentralSync {
             sync = true
-            user = System.env.NEXUS_USER
-            password = System.env.NEXUS_PASSWORD
+            user = getEnvProperty('NEXUS_USER')
+            password = getEnvProperty('NEXUS_PASSWORD')
           }
         }
       }
     }
   }
+}
+
+def getEnvProperty(String name) {
+  return project.findProperty(name) ?: System.getenv(name)
 }

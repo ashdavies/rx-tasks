@@ -1,6 +1,5 @@
 ext.configuration = [
     compileSdkVersion  : 27,
-    buildToolsVersion  : '27.0.3',
 
     minSdkVersion      : 14,
     targetSdkVersion   : 27,
@@ -12,25 +11,25 @@ ext.configuration = [
 ext.versions = [
     android: [
         support: '27.0.2',
-        tools  : '3.2.0-alpha03'
+        tools  : '3.2.0-alpha16'
     ],
 
     google : [
         play    : [
-            services: '11.8.0'
+            services: '15.0.0'
         ],
         services: '3.1.2'
     ],
 
     jacoco : '0.1.1',
-    kotlin : '1.2.21',
+    kotlin : '1.2.41',
 
     rx     : [
         java   : '2.1.7',
         android: '2.0.1',
     ],
 
-    shipkit: '2.0.2',
+    shipkit: '2.0.25',
 
     jUnit  : '4.12',
     truth  : '0.30',

@@ -1,0 +1,47 @@
+def file = Version.versionFile(project.file("version.properties"))
+
+allprojects {
+  project.version = file.version
+  project.ext.versionFile = file
+}
+
+logger.lifecycle "Version: $project.version"
+
+class Version {
+  static VersionFile versionFile(file) {
+    return new VersionFile(file)
+  }
+}
+
+class VersionFile {
+
+  private final File file
+  private version
+
+  VersionFile(file) {
+    this.file = file
+  }
+
+  def getVersion() {
+    if (version == null) {
+      readVersion()
+    }
+    return version
+  }
+
+  private readVersion() {
+    Properties p = new Properties()
+    FileReader reader = null
+    try {
+      reader = new FileReader(file)
+      p.load(reader)
+    } catch (Exception ignored) {
+      throw new RuntimeException("Cannot read version file: " + file)
+    } finally {
+      if (reader != null) {
+        reader.close()
+      }
+    }
+    version = p.getProperty("version")
+  }
+}
