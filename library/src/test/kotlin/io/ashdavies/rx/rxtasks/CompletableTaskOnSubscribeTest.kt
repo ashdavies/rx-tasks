@@ -3,40 +3,43 @@ package io.ashdavies.rx.rxtasks
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
+import com.nhaarman.mockito_kotlin.argumentCaptor
+import com.nhaarman.mockito_kotlin.eq
+import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.willReturn
+import com.nhaarman.mockito_kotlin.then
 import io.reactivex.CompletableEmitter
 import org.junit.Test
-import org.mockito.BDDMockito.given
-import org.mockito.BDDMockito.then
+import java.util.concurrent.Executor
 
 internal class CompletableTaskOnSubscribeTest {
 
   private val task = mock<Task<Void>>()
   private val emitter = mock<CompletableEmitter>()
-  private val factory = mock<TaskListenerFactory<Void, CompletableEmitter>>()
-  private val success = mock<OnSuccessListener<Void>>()
-  private val failure = mock<OnFailureListener>()
+  private val executor = mock<Executor>()
 
-  private val subscribe = CompletableTaskOnSubscribe(task, factory)
+  private val completable = CompletableTaskOnSubscribe(task, executor)
 
   @Test
-  fun `should subscribe with on success listener`() {
-    given(factory.createOnSuccessListener(emitter)).willReturn(success)
+  fun `should add on success listener`() {
+    val captor = argumentCaptor<OnSuccessListener<Void>>()
+    given(task.addOnSuccessListener(eq(executor), captor.capture())).willReturn(task)
 
-    subscribe.subscribe(emitter)
+    completable.subscribe(emitter)
+    captor.lastValue.onSuccess(null)
 
-    then(factory).should().createOnSuccessListener(emitter)
-    then(task).should().addOnSuccessListener(success)
+    then(emitter).should().onComplete()
   }
 
   @Test
-  fun `should subscribe with on failure listener`() {
-    given(factory.createOnFailureListener(emitter)).willReturn(failure)
+  fun `should add on failure listener`() {
+    val captor = argumentCaptor<OnFailureListener>()
+    given(task.addOnFailureListener(eq(executor), captor.capture())).willReturn(task)
 
-    subscribe.subscribe(emitter)
+    val exception = RuntimeException()
+    completable.subscribe(emitter)
 
-    then(factory).should().createOnFailureListener(emitter)
-    then(task).should().addOnFailureListener(failure)
+    captor.lastValue.onFailure(exception)
+    then(emitter).should().onError(exception)
   }
 }

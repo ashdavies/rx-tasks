@@ -10,7 +10,7 @@ ext.configuration = [
 
 ext.versions = [
     android: [
-        support: '27.0.2',
+        support: '27.1.1',
         tools  : '3.2.0-alpha16'
     ],
 
@@ -34,7 +34,7 @@ ext.versions = [
     jUnit  : '4.12',
     truth  : '0.30',
     mockito: [
-        core  : '1.10.19',
+        core  : '2.18.3',
         kotlin: '1.5.0'
     ]
 ]

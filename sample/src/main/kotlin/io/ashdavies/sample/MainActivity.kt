@@ -3,7 +3,6 @@ package io.ashdavies.sample
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import io.ashdavies.rx.rxtasks.toCompletable
 import io.ashdavies.rx.rxtasks.toSingle
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -21,21 +20,16 @@ class MainActivity : AppCompatActivity() {
   }
 
   override fun onDestroy() {
+    disposables.clear()
     super.onDestroy()
-    dispose()
-  }
-
-  private fun dispose() {
-    if (!disposables.isDisposed) {
-      disposables.dispose()
-    }
   }
 
   private fun signInAnonymously() {
     disposables += FirebaseAuth.getInstance()
         .signInAnonymously()
         .toSingle()
-        .subscribe { result -> greetAnonymousUser(result.user.uid) }
+        .map { it.user.uid }
+        .subscribe(::greetAnonymousUser)
   }
 
   private fun greetAnonymousUser(user: String) {

@@ -1,34 +1,34 @@
 package io.ashdavies.rx.rxtasks
 
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
-import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockito_kotlin.argumentCaptor
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.then
 import org.junit.Test
+import java.util.concurrent.Executor
 
 internal class TaskExtensionsTest {
 
-  private val task = mock<Task<Void>>()
+  private val executor = mock<Executor>()
 
   @Test
-  fun `should create completable task`() {
-    val captor = argumentCaptor<OnSuccessListener<Void>>()
+  fun `should execute completable with provided executor`() {
+    val task = mock<Task<Void>>()
 
-    task.toCompletable().subscribe()
+    task.toCompletable(executor).test()
 
-    then(task).should().addOnSuccessListener(captor.capture())
-    assertThat(captor.lastValue).isInstanceOf(CompletableEmitterSuccessListener::class.java)
+    then(task).should().addOnSuccessListener(eq(executor), any())
+    then(task).should().addOnFailureListener(eq(executor), any())
   }
 
   @Test
-  fun `should create single task`() {
-    val captor = argumentCaptor<OnSuccessListener<Void>>()
+  fun `should execute single with provided executor`() {
+    val task = mock<Task<Boolean>>()
 
-    task.toSingle().subscribe()
+    task.toSingle(executor).test()
 
-    then(task).should().addOnSuccessListener(captor.capture())
-    assertThat(captor.lastValue).isInstanceOf(SingleEmitterSuccessListener::class.java)
+    then(task).should().addOnSuccessListener(eq(executor), any())
+    then(task).should().addOnFailureListener(eq(executor), any())
   }
 }
