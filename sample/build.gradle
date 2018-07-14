@@ -4,16 +4,21 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion configuration.compileSdkVersion
+  compileSdkVersion 28
 
   defaultConfig {
     applicationId 'io.ashdavies.sample'
 
-    minSdkVersion configuration.minSdkVersion
-    targetSdkVersion configuration.targetSdkVersion
+    compileOptions {
+      sourceCompatibility JavaVersion.VERSION_1_7
+      targetCompatibility JavaVersion.VERSION_1_7
+    }
 
-    versionCode configuration.versionCode
-    versionName configuration.versionName
+    minSdkVersion 14
+    targetSdkVersion 28
+
+    versionCode VERSION_CODE
+    versionName VERSION_NAME
   }
 
   sourceSets {
@@ -25,14 +30,14 @@ android {
 dependencies {
   implementation project(':library')
 
-  implementation libraries.android.support.compat
-  implementation libraries.kotlin
+  implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.51'
 
-  implementation libraries.firebase.core
-  implementation libraries.firebase.auth
+  implementation 'com.google.firebase:firebase-core:16.0.1'
+  implementation 'com.google.firebase:firebase-auth:16.0.2'
 
-  implementation libraries.rx.java
-  implementation libraries.rx.android
+  implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
+  implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -25,6 +25,10 @@ jobs:
           name: Run Gradle :check command
           command: ./gradlew check --continue -Djava.util.concurrent.ForkJoinPool.common.parallelism=2
 
+      - run:
+          name: Deploy Snapshot
+          command: .buildscript/deploy_snapshot.sh
+
       - save_cache:
           paths:
             - /usr/local/android-sdk-linux/tools

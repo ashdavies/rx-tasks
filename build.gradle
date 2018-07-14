@@ -6,28 +6,24 @@ allprojects {
 }
 
 buildscript {
-  def gradleScriptDir = "${rootProject.projectDir}/gradle"
-  apply from: "${gradleScriptDir}/dependencies.gradle"
-
   dependencies {
-    classpath "com.android.tools.build:gradle:$versions.android.tools"
-    classpath "com.google.gms:google-services:$versions.google.services"
-    classpath "com.dicedmelon.gradle:jacoco-android:$versions.jacoco"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-    classpath "org.shipkit:shipkit:$versions.shipkit"
+    classpath "com.android.tools.build:gradle:3.3.0-alpha03"
+    classpath "com.google.gms:google-services:4.0.1"
+    classpath "com.dicedmelon.gradle:jacoco-android:0.1.1"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.51"
   }
 
   repositories {
     google()
     jcenter()
-
-    maven { url 'https://plugins.gradle.org/m2/' }
   }
 }
 
-apply plugin: 'org.shipkit.java'
-allprojects {
-  plugins.withId("java") {
-    bintrayUpload.enabled = false
-  }
+subprojects {
+  def gradleScriptDir = "${rootProject.projectDir}/gradle"
+
+  apply from: "${gradleScriptDir}/git-release-notes.gradle"
+  apply from: "${gradleScriptDir}/gradle-mvn-push.gradle"
+
+  tasks.withType(Javadoc).all { enabled = false }
 }

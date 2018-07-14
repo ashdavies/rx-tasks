@@ -1,40 +1,17 @@
-# built application files
-*.apk
-*.ap_
-
-# files for the dex VM
-*.dex
-
-# Java class files
-*.class
-
-# generated files
-bin/
-gen/
-out/
-build.log
-build-log.xml
-
-# Local configuration files (android, sdk path, etc)
-gradle.properties
-local.properties
-
-.project
-.classpath
-.settings
-target/
-build/
-classes/
-tmp/
-
-# IDEA Ignores
+# IDEA
 *.iml
-*.ipr
-*.iws
-.idea/
-.gradle/
+/.idea
 
-# Google services config file
+# Gradle
+.gradle
+build
+/reports
+
+# Gradle Android
+/local.properties
+/captures
+
+# Google Services
 google-services.json
 
 # MAC
@@ -42,6 +19,3 @@ google-services.json
 
 # Linux
 *~
-
-app/build
-lint-results.xml
