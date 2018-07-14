@@ -1,9 +1,8 @@
 package io.ashdavies.sample
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import io.ashdavies.rx.rxtasks.toCompletable
 import io.ashdavies.rx.rxtasks.toSingle
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
