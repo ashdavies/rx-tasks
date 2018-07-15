@@ -2,8 +2,6 @@ version: 2
 
 jobs:
   build:
-    working_directory: ~/rx-tasks
-
     docker:
       - image: circleci/android:api-27-alpha
 
@@ -24,7 +22,6 @@ jobs:
       - run:
           name: Run Gradle :check command
           command: ./gradlew check --continue -Djava.util.concurrent.ForkJoinPool.common.parallelism=2
-
 
       - run:
           name: Export Sonatype Credentials
