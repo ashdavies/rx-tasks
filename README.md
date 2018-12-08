@@ -1,4 +1,5 @@
 ### Android RxTasks
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/03ae86d9ce934421879bc407aa157732)](https://app.codacy.com/app/ash.davies/rx-tasks?utm_source=github.com&utm_medium=referral&utm_content=ashdavies/rx-tasks&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://img.shields.io/travis/ashdavies/rx-tasks.svg)](https://travis-ci.org/ashdavies/rx-tasks)
 ![Coverage](https://img.shields.io/codecov/c/github/ashdavies/rx-tasks.svg)
 [![Download](https://api.bintray.com/packages/ashdavies/maven/rx-tasks/images/download.svg)](https://bintray.com/ashdavies/maven/rx-tasks/_latestVersion)
