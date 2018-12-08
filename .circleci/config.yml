@@ -16,10 +16,6 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
 
       - run:
-          name: Decrypt Google Services Configuration
-          command: openssl aes-256-cbc -d -in sample/google-services.json.enc -out sample/google-services.json -k $GOOGLE_SERVICES_KEY
-
-      - run:
           name: Run Gradle :check command
           command: ./gradlew check --continue -Djava.util.concurrent.ForkJoinPool.common.parallelism=2
 
