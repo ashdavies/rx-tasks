@@ -11,8 +11,8 @@ build
 /local.properties
 /captures
 
-# Google Services
-google-services.json
+# Signing
+*.gpg
 
 # MAC
 *.DS_Store
