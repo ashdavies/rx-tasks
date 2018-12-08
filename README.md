@@ -1,13 +1,13 @@
 # Android RxTasks
 
-![](https://img.shields.io/circleci/project/github/ashdavies/rx-tasks.svg)
-![](https://img.shields.io/codacy/coverage/03ae86d9ce934421879bc407aa157732.svg)
+[![](https://img.shields.io/circleci/project/github/ashdavies/rx-tasks.svg)](https://circleci.com/gh/ashdavies/rx-tasks)
+[![](https://img.shields.io/codacy/coverage/03ae86d9ce934421879bc407aa157732.svg)](https://app.codacy.com/project/ash.davies/rx-tasks/dashboard)
 [![](https://img.shields.io/maven-central/v/io.ashdavies.rx.rxtasks/rx-tasks.svg)](https://search.maven.org/artifact/io.ashdavies.rx.rxtasks/rx-tasks)
 ![](https://img.shields.io/github/license/ashdavies/rx-tasks.svg)
 
-![](https://img.shields.io/codacy/grade/03ae86d9ce934421879bc407aa157732.svg)
-![](https://img.shields.io/github/last-commit/ashdavies/rx-tasks.svg)
-![](https://img.shields.io/github/issues-pr/ashdavies/rx-tasks.svg)
+[![](https://img.shields.io/codacy/grade/03ae86d9ce934421879bc407aa157732.svg)](https://app.codacy.com/project/ash.davies/rx-tasks/dashboard)
+[![](https://img.shields.io/github/last-commit/ashdavies/rx-tasks.svg)](https://github.com/ashdavies/rx-tasks/commits/master)
+[![](https://img.shields.io/github/issues-pr/ashdavies/rx-tasks.svg)](https://github.com/ashdavies/rx-tasks/pulls)
 
 **Simple and lightweight RxJava2 conversion for the [Google Tasks APIs](https://developers.google.com/android/guides/tasks)**
 
