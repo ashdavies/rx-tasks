@@ -4,7 +4,7 @@ import com.google.android.gms.tasks.Tasks
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.then
-import io.reactivex.CompletableEmitter
+import io.reactivex.rxjava3.core.CompletableEmitter
 import org.junit.Test
 import java.util.concurrent.CancellationException
 
@@ -15,7 +15,7 @@ internal class CompletableEmitterListenerTest {
 
   @Test
   fun `should represent result as completion`() {
-    listener.onComplete(Tasks.forResult<Void>(null))
+    listener.onComplete(Tasks.forResult(null))
 
     then(emitter)
         .should()
@@ -24,7 +24,7 @@ internal class CompletableEmitterListenerTest {
 
   @Test
   fun `should represent cancelled as error`() {
-    listener.onComplete(Tasks.forCanceled<Void>())
+    listener.onComplete(Tasks.forCanceled())
 
     then(emitter)
         .should()

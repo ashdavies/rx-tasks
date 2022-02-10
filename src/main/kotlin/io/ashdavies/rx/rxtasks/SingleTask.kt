@@ -2,8 +2,9 @@ package io.ashdavies.rx.rxtasks
 
 import android.app.Activity
 import com.google.android.gms.tasks.Task
-import io.reactivex.Single
-import io.reactivex.SingleEmitter
+
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.SingleEmitter
 import java.util.concurrent.Executor
 
 fun <T : Any> Task<T>.toSingle(): Single<T> = asSingle { addOnCompleteListener(SingleEmitterListener(it)) }

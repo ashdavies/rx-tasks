@@ -2,8 +2,9 @@ package io.ashdavies.rx.rxtasks
 
 import android.app.Activity
 import com.google.android.gms.tasks.Task
-import io.reactivex.Completable
-import io.reactivex.CompletableEmitter
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.CompletableEmitter
+
 import java.util.concurrent.Executor
 
 fun Task<Void>.toCompletable(): Completable = asCompletable { addOnCompleteListener(CompletableEmitterListener(it)) }
