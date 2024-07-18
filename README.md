@@ -1,5 +1,4 @@
 # Android RxTasks
-
 [![](https://img.shields.io/circleci/project/github/ashdavies/rx-tasks.svg)](https://circleci.com/gh/ashdavies/rx-tasks)
 [![](https://img.shields.io/codacy/coverage/03ae86d9ce934421879bc407aa157732.svg)](https://app.codacy.com/project/ash.davies/rx-tasks/dashboard)
 [![](https://img.shields.io/maven-central/v/io.ashdavies.rx.rxtasks/rx-tasks.svg)](https://search.maven.org/artifact/io.ashdavies.rx.rxtasks/rx-tasks)
@@ -8,8 +7,9 @@
 [![](https://img.shields.io/codacy/grade/03ae86d9ce934421879bc407aa157732.svg)](https://app.codacy.com/project/ash.davies/rx-tasks/dashboard)
 [![](https://img.shields.io/github/last-commit/ashdavies/rx-tasks.svg)](https://github.com/ashdavies/rx-tasks/commits/master)
 [![](https://img.shields.io/github/issues-pr/ashdavies/rx-tasks.svg)](https://github.com/ashdavies/rx-tasks/pulls)
+### This is a fork of https://github.com/ashdavies/rx-tasks that add support for rxjava3
 
-**Simple and lightweight RxJava2 conversion for the [Google Tasks APIs](https://developers.google.com/android/guides/tasks)**
+**Simple and lightweight RxJava3 conversion for the [Google Tasks APIs](https://developers.google.com/android/guides/tasks)**
 
 ## The Tasks API
 > Starting with Google Play services version 9.0.0, you can use a `Task` API and a number of methods that return `Task` or its subclasses. `Task` is an API that represents asynchronous method calls, similar to `PendingResult` in previous versions of Google Play Services.
